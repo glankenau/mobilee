@@ -1,0 +1,3 @@
+class MediaAnswer < OpenQuestion
+
+end
