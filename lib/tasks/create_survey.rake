@@ -15,13 +15,13 @@ namespace :survey do
 
     # Create Multiple Choice Question for Age
     age_question = MultipleChoiceQuestion.create(title: 'What is your age?', number: 2, survey: survey)
-    age_question.answers.create(title: 'Under 18')
-    age_question.answers.create(title: '18-24')
-    age_question.answers.create(title: '25-34')
-    age_question.answers.create(title: '35-44')
-    age_question.answers.create(title: '45-54')
-    age_question.answers.create(title: '55-64')
-    age_question.answers.create(title: '65 or older')
+    age_question.answers.create(title: 'Under 18', selected_count: 0)
+    age_question.answers.create(title: '18-24', selected_count: 0)
+    age_question.answers.create(title: '25-34', selected_count: 0)
+    age_question.answers.create(title: '35-44', selected_count: 0)
+    age_question.answers.create(title: '45-54', selected_count: 0)
+    age_question.answers.create(title: '55-64', selected_count: 0)
+    age_question.answers.create(title: '65 or older', selected_count: 0)
     puts "Multiple Choice Question '#{age_question.title}' created with ID #{age_question.id}"
 
     # Create Multiple Choice Question for Report Type
