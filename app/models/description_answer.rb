@@ -1,0 +1,3 @@
+class DescriptionAnswer < SingleAnswer
+
+end
