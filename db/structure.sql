@@ -31,19 +31,20 @@ CREATE TABLE public.ar_internal_metadata (
 
 CREATE TABLE public.multiple_choice_answers (
     id bigint NOT NULL,
-    title character varying,
+    content text,
     selected_count integer,
     question_id bigint,
+    report_id bigint,
     created_at timestamp(6) with time zone NOT NULL,
     updated_at timestamp(6) with time zone NOT NULL
 );
 
 
 --
--- Name: COLUMN multiple_choice_answers.title; Type: COMMENT; Schema: public; Owner: -
+-- Name: COLUMN multiple_choice_answers.content; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON COLUMN public.multiple_choice_answers.title IS 'Value of the answer';
+COMMENT ON COLUMN public.multiple_choice_answers.content IS 'Value of the answer';
 
 
 --
@@ -78,7 +79,7 @@ ALTER SEQUENCE public.multiple_choice_answers_id_seq OWNED BY public.multiple_ch
 
 CREATE TABLE public.questions (
     id bigint NOT NULL,
-    title character varying,
+    title text,
     number integer,
     type character varying DEFAULT 'OpenQuestion'::character varying,
     survey_id bigint,
@@ -98,7 +99,7 @@ COMMENT ON TABLE public.questions IS 'List of Questions for a given Survey';
 -- Name: COLUMN questions.title; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON COLUMN public.questions.title IS 'Question text';
+COMMENT ON COLUMN public.questions.title IS 'Question Title';
 
 
 --
@@ -135,6 +136,45 @@ ALTER SEQUENCE public.questions_id_seq OWNED BY public.questions.id;
 
 
 --
+-- Name: reports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.reports (
+    id bigint NOT NULL,
+    number integer NOT NULL,
+    survey_id bigint,
+    created_at timestamp(6) with time zone NOT NULL,
+    updated_at timestamp(6) with time zone NOT NULL
+);
+
+
+--
+-- Name: COLUMN reports.number; Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON COLUMN public.reports.number IS 'Report number';
+
+
+--
+-- Name: reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.reports_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.reports_id_seq OWNED BY public.reports.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -149,9 +189,10 @@ CREATE TABLE public.schema_migrations (
 
 CREATE TABLE public.single_answers (
     id bigint NOT NULL,
-    content character varying,
+    content text,
     type character varying DEFAULT 'DescriptionAnswer'::character varying,
     question_id bigint,
+    report_id bigint,
     created_at timestamp(6) with time zone NOT NULL,
     updated_at timestamp(6) with time zone NOT NULL
 );
@@ -189,7 +230,7 @@ ALTER SEQUENCE public.single_answers_id_seq OWNED BY public.single_answers.id;
 
 CREATE TABLE public.surveys (
     id bigint NOT NULL,
-    name character varying NOT NULL,
+    title text NOT NULL,
     created_at timestamp(6) with time zone NOT NULL,
     updated_at timestamp(6) with time zone NOT NULL
 );
@@ -203,10 +244,10 @@ COMMENT ON TABLE public.surveys IS 'List of Surveys';
 
 
 --
--- Name: COLUMN surveys.name; Type: COMMENT; Schema: public; Owner: -
+-- Name: COLUMN surveys.title; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON COLUMN public.surveys.name IS 'Survey Name';
+COMMENT ON COLUMN public.surveys.title IS 'Survey Title';
 
 
 --
@@ -240,6 +281,13 @@ ALTER TABLE ONLY public.multiple_choice_answers ALTER COLUMN id SET DEFAULT next
 --
 
 ALTER TABLE ONLY public.questions ALTER COLUMN id SET DEFAULT nextval('public.questions_id_seq'::regclass);
+
+
+--
+-- Name: reports id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports ALTER COLUMN id SET DEFAULT nextval('public.reports_id_seq'::regclass);
 
 
 --
@@ -281,6 +329,14 @@ ALTER TABLE ONLY public.questions
 
 
 --
+-- Name: reports reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports
+    ADD CONSTRAINT reports_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -312,10 +368,24 @@ CREATE INDEX index_multiple_choice_answers_on_question_id ON public.multiple_cho
 
 
 --
+-- Name: index_multiple_choice_answers_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_multiple_choice_answers_on_report_id ON public.multiple_choice_answers USING btree (report_id);
+
+
+--
 -- Name: index_questions_on_survey_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_questions_on_survey_id ON public.questions USING btree (survey_id);
+
+
+--
+-- Name: index_reports_on_survey_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_on_survey_id ON public.reports USING btree (survey_id);
 
 
 --
@@ -326,12 +396,20 @@ CREATE INDEX index_single_answers_on_question_id ON public.single_answers USING 
 
 
 --
+-- Name: index_single_answers_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_single_answers_on_report_id ON public.single_answers USING btree (report_id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240109191223'),
 ('20231221121727'),
 ('20231221121656'),
 ('20231221120558'),
