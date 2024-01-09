@@ -74,6 +74,39 @@ ALTER SEQUENCE public.multiple_choice_answers_id_seq OWNED BY public.multiple_ch
 
 
 --
+-- Name: multiple_choice_selected_answers; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.multiple_choice_selected_answers (
+    id bigint NOT NULL,
+    title text NOT NULL,
+    question_id bigint,
+    report_id bigint,
+    created_at timestamp(6) with time zone NOT NULL,
+    updated_at timestamp(6) with time zone NOT NULL
+);
+
+
+--
+-- Name: multiple_choice_selected_answers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.multiple_choice_selected_answers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: multiple_choice_selected_answers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.multiple_choice_selected_answers_id_seq OWNED BY public.multiple_choice_selected_answers.id;
+
+
+--
 -- Name: questions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -277,6 +310,13 @@ ALTER TABLE ONLY public.multiple_choice_answers ALTER COLUMN id SET DEFAULT next
 
 
 --
+-- Name: multiple_choice_selected_answers id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.multiple_choice_selected_answers ALTER COLUMN id SET DEFAULT nextval('public.multiple_choice_selected_answers_id_seq'::regclass);
+
+
+--
 -- Name: questions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -318,6 +358,14 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 ALTER TABLE ONLY public.multiple_choice_answers
     ADD CONSTRAINT multiple_choice_answers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: multiple_choice_selected_answers multiple_choice_selected_answers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.multiple_choice_selected_answers
+    ADD CONSTRAINT multiple_choice_selected_answers_pkey PRIMARY KEY (id);
 
 
 --
@@ -375,6 +423,20 @@ CREATE INDEX index_multiple_choice_answers_on_report_id ON public.multiple_choic
 
 
 --
+-- Name: index_multiple_choice_selected_answers_on_question_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_multiple_choice_selected_answers_on_question_id ON public.multiple_choice_selected_answers USING btree (question_id);
+
+
+--
+-- Name: index_multiple_choice_selected_answers_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_multiple_choice_selected_answers_on_report_id ON public.multiple_choice_selected_answers USING btree (report_id);
+
+
+--
 -- Name: index_questions_on_survey_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -409,6 +471,7 @@ CREATE INDEX index_single_answers_on_report_id ON public.single_answers USING bt
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240109194625'),
 ('20240109191223'),
 ('20231221121727'),
 ('20231221121656'),

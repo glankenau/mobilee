@@ -1,3 +1,3 @@
-class MediaAnswer < OpenQuestion
+class MediaAnswer < ApplicationRecord
 
 end
