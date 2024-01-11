@@ -14,6 +14,47 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: answers; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.answers (
+    id bigint NOT NULL,
+    value text NOT NULL,
+    type character varying DEFAULT 'DescriptionAnswer'::character varying,
+    question_id bigint,
+    report_id bigint,
+    created_at timestamp(6) with time zone NOT NULL,
+    updated_at timestamp(6) with time zone NOT NULL
+);
+
+
+--
+-- Name: COLUMN answers.value; Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON COLUMN public.answers.value IS 'Value of the answer';
+
+
+--
+-- Name: answers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.answers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: answers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.answers_id_seq OWNED BY public.answers.id;
+
+
+--
 -- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -26,10 +67,10 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
--- Name: multiple_choice_answers; Type: TABLE; Schema: public; Owner: -
+-- Name: multiple_choice_options; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.multiple_choice_answers (
+CREATE TABLE public.multiple_choice_options (
     id bigint NOT NULL,
     value text,
     selected_count integer,
@@ -40,24 +81,24 @@ CREATE TABLE public.multiple_choice_answers (
 
 
 --
--- Name: COLUMN multiple_choice_answers.value; Type: COMMENT; Schema: public; Owner: -
+-- Name: COLUMN multiple_choice_options.value; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON COLUMN public.multiple_choice_answers.value IS 'Value of the answer';
-
-
---
--- Name: COLUMN multiple_choice_answers.selected_count; Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON COLUMN public.multiple_choice_answers.selected_count IS 'How many times this answer has been selected';
+COMMENT ON COLUMN public.multiple_choice_options.value IS 'Value of the answer';
 
 
 --
--- Name: multiple_choice_answers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: COLUMN multiple_choice_options.selected_count; Type: COMMENT; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.multiple_choice_answers_id_seq
+COMMENT ON COLUMN public.multiple_choice_options.selected_count IS 'How many times this answer has been selected';
+
+
+--
+-- Name: multiple_choice_options_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.multiple_choice_options_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -66,43 +107,10 @@ CREATE SEQUENCE public.multiple_choice_answers_id_seq
 
 
 --
--- Name: multiple_choice_answers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: multiple_choice_options_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.multiple_choice_answers_id_seq OWNED BY public.multiple_choice_answers.id;
-
-
---
--- Name: multiple_choice_selected_answers; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.multiple_choice_selected_answers (
-    id bigint NOT NULL,
-    value text NOT NULL,
-    question_id bigint,
-    report_id bigint,
-    created_at timestamp(6) with time zone NOT NULL,
-    updated_at timestamp(6) with time zone NOT NULL
-);
-
-
---
--- Name: multiple_choice_selected_answers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.multiple_choice_selected_answers_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: multiple_choice_selected_answers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.multiple_choice_selected_answers_id_seq OWNED BY public.multiple_choice_selected_answers.id;
+ALTER SEQUENCE public.multiple_choice_options_id_seq OWNED BY public.multiple_choice_options.id;
 
 
 --
@@ -216,47 +224,6 @@ CREATE TABLE public.schema_migrations (
 
 
 --
--- Name: single_answers; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.single_answers (
-    id bigint NOT NULL,
-    value text,
-    type character varying DEFAULT 'DescriptionAnswer'::character varying,
-    question_id bigint,
-    report_id bigint,
-    created_at timestamp(6) with time zone NOT NULL,
-    updated_at timestamp(6) with time zone NOT NULL
-);
-
-
---
--- Name: COLUMN single_answers.value; Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON COLUMN public.single_answers.value IS 'Value of the answer';
-
-
---
--- Name: single_answers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.single_answers_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: single_answers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.single_answers_id_seq OWNED BY public.single_answers.id;
-
-
---
 -- Name: surveys; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -302,17 +269,17 @@ ALTER SEQUENCE public.surveys_id_seq OWNED BY public.surveys.id;
 
 
 --
--- Name: multiple_choice_answers id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: answers id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.multiple_choice_answers ALTER COLUMN id SET DEFAULT nextval('public.multiple_choice_answers_id_seq'::regclass);
+ALTER TABLE ONLY public.answers ALTER COLUMN id SET DEFAULT nextval('public.answers_id_seq'::regclass);
 
 
 --
--- Name: multiple_choice_selected_answers id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: multiple_choice_options id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.multiple_choice_selected_answers ALTER COLUMN id SET DEFAULT nextval('public.multiple_choice_selected_answers_id_seq'::regclass);
+ALTER TABLE ONLY public.multiple_choice_options ALTER COLUMN id SET DEFAULT nextval('public.multiple_choice_options_id_seq'::regclass);
 
 
 --
@@ -330,17 +297,18 @@ ALTER TABLE ONLY public.reports ALTER COLUMN id SET DEFAULT nextval('public.repo
 
 
 --
--- Name: single_answers id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.single_answers ALTER COLUMN id SET DEFAULT nextval('public.single_answers_id_seq'::regclass);
-
-
---
 -- Name: surveys id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.surveys ALTER COLUMN id SET DEFAULT nextval('public.surveys_id_seq'::regclass);
+
+
+--
+-- Name: answers answers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.answers
+    ADD CONSTRAINT answers_pkey PRIMARY KEY (id);
 
 
 --
@@ -352,19 +320,11 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 
 --
--- Name: multiple_choice_answers multiple_choice_answers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: multiple_choice_options multiple_choice_options_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.multiple_choice_answers
-    ADD CONSTRAINT multiple_choice_answers_pkey PRIMARY KEY (id);
-
-
---
--- Name: multiple_choice_selected_answers multiple_choice_selected_answers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.multiple_choice_selected_answers
-    ADD CONSTRAINT multiple_choice_selected_answers_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.multiple_choice_options
+    ADD CONSTRAINT multiple_choice_options_pkey PRIMARY KEY (id);
 
 
 --
@@ -392,14 +352,6 @@ ALTER TABLE ONLY public.schema_migrations
 
 
 --
--- Name: single_answers single_answers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.single_answers
-    ADD CONSTRAINT single_answers_pkey PRIMARY KEY (id);
-
-
---
 -- Name: surveys surveys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -408,24 +360,24 @@ ALTER TABLE ONLY public.surveys
 
 
 --
--- Name: index_multiple_choice_answers_on_question_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_answers_on_question_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_multiple_choice_answers_on_question_id ON public.multiple_choice_answers USING btree (question_id);
-
-
---
--- Name: index_multiple_choice_selected_answers_on_question_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_multiple_choice_selected_answers_on_question_id ON public.multiple_choice_selected_answers USING btree (question_id);
+CREATE INDEX index_answers_on_question_id ON public.answers USING btree (question_id);
 
 
 --
--- Name: index_multiple_choice_selected_answers_on_report_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_answers_on_report_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_multiple_choice_selected_answers_on_report_id ON public.multiple_choice_selected_answers USING btree (report_id);
+CREATE INDEX index_answers_on_report_id ON public.answers USING btree (report_id);
+
+
+--
+-- Name: index_multiple_choice_options_on_question_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_multiple_choice_options_on_question_id ON public.multiple_choice_options USING btree (question_id);
 
 
 --
@@ -443,27 +395,12 @@ CREATE INDEX index_reports_on_survey_id ON public.reports USING btree (survey_id
 
 
 --
--- Name: index_single_answers_on_question_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_single_answers_on_question_id ON public.single_answers USING btree (question_id);
-
-
---
--- Name: index_single_answers_on_report_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_single_answers_on_report_id ON public.single_answers USING btree (report_id);
-
-
---
 -- PostgreSQL database dump complete
 --
 
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20240109194625'),
 ('20240109191223'),
 ('20231221121727'),
 ('20231221121656'),
