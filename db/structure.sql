@@ -73,7 +73,6 @@ CREATE TABLE public.ar_internal_metadata (
 CREATE TABLE public.multiple_choice_options (
     id bigint NOT NULL,
     value text,
-    selected_count integer,
     question_id bigint,
     created_at timestamp(6) with time zone NOT NULL,
     updated_at timestamp(6) with time zone NOT NULL
@@ -85,13 +84,6 @@ CREATE TABLE public.multiple_choice_options (
 --
 
 COMMENT ON COLUMN public.multiple_choice_options.value IS 'Value of the answer';
-
-
---
--- Name: COLUMN multiple_choice_options.selected_count; Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON COLUMN public.multiple_choice_options.selected_count IS 'How many times this answer has been selected';
 
 
 --
