@@ -19,21 +19,21 @@ namespace :survey do
 
     # Create Multiple Choice Question for Age
     age_question = MultipleChoiceQuestion.create(title: 'What is your age?', number: 2, survey: survey)
-    age_question.answers.create(value: 'Under 18')
-    age_question.answers.create(value: '18-24')
-    age_question.answers.create(value: '25-34')
-    age_question.answers.create(value: '35-44')
-    age_question.answers.create(value: '45-54')
-    age_question.answers.create(value: '55-64')
-    age_question.answers.create(value: '65 or older')
+    age_question.options.create(value: 'Under 18')
+    age_question.options.create(value: '18-24')
+    age_question.options.create(value: '25-34')
+    age_question.options.create(value: '35-44')
+    age_question.options.create(value: '45-54')
+    age_question.options.create(value: '55-64')
+    age_question.options.create(value: '65 or older')
     puts "Multiple Choice Question '#{age_question.title}' created with ID #{age_question.id}"
 
     # Create Multiple Choice Question for Report Type
     report_type_question = MultipleChoiceQuestion.create(title: 'What type of report do you want to contribute with?', number: 3, survey: survey)
-    report_type_question.answers.create(value: 'Environmental Issues')
-    report_type_question.answers.create(value: 'Social Injustices')
-    report_type_question.answers.create(value: 'Economic Disparities')
-    report_type_question.answers.create(value: 'Transportation Challenges')
+    report_type_question.options.create(value: 'Environmental Issues')
+    report_type_question.options.create(value: 'Social Injustices')
+    report_type_question.options.create(value: 'Economic Disparities')
+    report_type_question.options.create(value: 'Transportation Challenges')
     puts "Multiple Choice Question '#{report_type_question.title}' created with ID #{report_type_question.id}"
 
     # Create Answer for Email Question
@@ -41,11 +41,11 @@ namespace :survey do
     puts "Email Answer '#{email_answer.value}' created with ID #{email_answer.id}"
 
     # Create Answer for Multiple Choice Question for Age
-    age_question_answer = MultipleChoiceSelectedAnswer.create(value: '25-35', question: age_question, report: report)
+    age_question_answer = MultipleChoiceAnswer.create(value: '25-35', question: age_question, report: report)
     puts "Multiple Choice Answer '#{age_question_answer.value}' created with ID #{age_question_answer.id}"
 
     # Create Answer for Multiple Choice Question for Report Type
-    report_question_answer = MultipleChoiceSelectedAnswer.create(value: 'Social Injustices', question: report_type_question, report: report)
+    report_question_answer = MultipleChoiceAnswer.create(value: 'Social Injustices', question: report_type_question, report: report)
     puts "Multiple Choice Answer '#{report_question_answer.value}' created with ID #{report_question_answer.id}"
   end
 end
