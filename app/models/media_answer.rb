@@ -1,3 +1,2 @@
-class MediaAnswer < ApplicationRecord
-
+class MediaAnswer < Answer
 end

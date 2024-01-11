@@ -1,5 +1,4 @@
 class Report < ApplicationRecord
+  has_many :answers
   belongs_to :survey
-  has_many :multiple_choice_answers
-  has_many :single_answers
 end
