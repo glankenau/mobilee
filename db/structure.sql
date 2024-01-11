@@ -31,20 +31,19 @@ CREATE TABLE public.ar_internal_metadata (
 
 CREATE TABLE public.multiple_choice_answers (
     id bigint NOT NULL,
-    content text,
+    value text,
     selected_count integer,
     question_id bigint,
-    report_id bigint,
     created_at timestamp(6) with time zone NOT NULL,
     updated_at timestamp(6) with time zone NOT NULL
 );
 
 
 --
--- Name: COLUMN multiple_choice_answers.content; Type: COMMENT; Schema: public; Owner: -
+-- Name: COLUMN multiple_choice_answers.value; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON COLUMN public.multiple_choice_answers.content IS 'Value of the answer';
+COMMENT ON COLUMN public.multiple_choice_answers.value IS 'Value of the answer';
 
 
 --
@@ -79,7 +78,7 @@ ALTER SEQUENCE public.multiple_choice_answers_id_seq OWNED BY public.multiple_ch
 
 CREATE TABLE public.multiple_choice_selected_answers (
     id bigint NOT NULL,
-    title text NOT NULL,
+    value text NOT NULL,
     question_id bigint,
     report_id bigint,
     created_at timestamp(6) with time zone NOT NULL,
@@ -222,7 +221,7 @@ CREATE TABLE public.schema_migrations (
 
 CREATE TABLE public.single_answers (
     id bigint NOT NULL,
-    content text,
+    value text,
     type character varying DEFAULT 'DescriptionAnswer'::character varying,
     question_id bigint,
     report_id bigint,
@@ -232,10 +231,10 @@ CREATE TABLE public.single_answers (
 
 
 --
--- Name: COLUMN single_answers.content; Type: COMMENT; Schema: public; Owner: -
+-- Name: COLUMN single_answers.value; Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON COLUMN public.single_answers.content IS 'Value of the answer';
+COMMENT ON COLUMN public.single_answers.value IS 'Value of the answer';
 
 
 --
@@ -413,13 +412,6 @@ ALTER TABLE ONLY public.surveys
 --
 
 CREATE INDEX index_multiple_choice_answers_on_question_id ON public.multiple_choice_answers USING btree (question_id);
-
-
---
--- Name: index_multiple_choice_answers_on_report_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_multiple_choice_answers_on_report_id ON public.multiple_choice_answers USING btree (report_id);
 
 
 --
