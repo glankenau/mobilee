@@ -4,7 +4,7 @@ def setup
   log 'Installing gems'
   # Only do bundle install if the much-faster
   # bundle check indicates we need to
-  system! 'rm db/structure.sql'
+system! 'rm db/structure.sql'
   system! 'bundle check || bundle install'
 
   log 'Dropping & recreating the development database'
