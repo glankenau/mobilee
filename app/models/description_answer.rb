@@ -1,3 +1,2 @@
-class DescriptionAnswer < SingleAnswer
-
+class DescriptionAnswer < Answer
 end

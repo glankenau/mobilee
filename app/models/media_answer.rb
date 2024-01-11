@@ -1,3 +1,2 @@
-class MediaAnswer < OpenQuestion
-
+class MediaAnswer < Answer
 end

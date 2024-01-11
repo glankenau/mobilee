@@ -1,9 +1,8 @@
 class Question < ApplicationRecord
+  has_many :answers
   belongs_to :survey
-  has_many :multiple_choice_answers
-  has_many :single_answers
 
   validates :title, presence: true
   validates :number, presence: true
-  validates :type, inclusion: { in: ['OpenQuestion', 'MultipleChoiceQuestion']}
+  validates :type, inclusion: { in: %w[OpenQuestion MultipleChoiceQuestion] }
 end

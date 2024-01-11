@@ -1,3 +1,2 @@
-class Location < SingleAnswer
-
+class Location < Answer
 end

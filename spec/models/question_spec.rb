@@ -5,8 +5,7 @@ require 'rails_helper'
 RSpec.describe Question, type: :model do
   describe 'associations' do
     it { should belong_to(:survey) }
-    it { should have_many(:multiple_choice_answers) }
-    it { should have_many(:single_answers) }
+    it { should have_many(:answers) }
   end
 
   describe 'validations' do

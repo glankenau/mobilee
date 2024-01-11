@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :survey do
-    name { 'Mobility Injustice Report' }
+    title { 'Mobility Injustice Report' }
 
     trait :with_open_question do
       after(:create) do |survey|
@@ -28,7 +28,7 @@ FactoryBot.define do
     number { 2 }
 
     after(:create) do |question|
-      create_list(:multiple_choice_answer, 7, question: question, title: 'Under 18')
+      create_list(:multiple_choice_option, 7, question: question, value: 'Under 18')
     end
   end
 
@@ -37,12 +37,11 @@ FactoryBot.define do
     number { 3 }
 
     after(:create) do |question|
-      create_list(:multiple_choice_answer, 4, question: question, title: 'Environmental Issues')
+      create_list(:multiple_choice_option, 4, question: question, value: 'Environmental Issues')
     end
   end
 
-  factory :multiple_choice_answer do
-    title { 'Under 18' }
-    selected_count { 0 }
+  factory :multiple_choice_option do
+    value { 'Under 18' }
   end
 end
