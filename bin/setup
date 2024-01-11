@@ -4,6 +4,7 @@ def setup
   log 'Installing gems'
   # Only do bundle install if the much-faster
   # bundle check indicates we need to
+  system! 'rm db/structure.sql'
   system! 'bundle check || bundle install'
 
   log 'Dropping & recreating the development database'
@@ -16,6 +17,9 @@ def setup
   # Setting the RAILS_ENV explicitly to be sure
   # we actually reset the test database
   system!({ 'RAILS_ENV' => 'test' }, 'bin/rails db:reset')
+
+  # Run Rake to populate the initial survey with answers
+  system! 'rake survey:create'
 
   log 'All set up.'
   log ''
