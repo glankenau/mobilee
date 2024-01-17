@@ -1,5 +1,22 @@
-<h1>Survey Details</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Include your stylesheets and other head content here -->
+  <!-- ... -->
+</head>
+<body class="bg-gradient-to-b from-blue-700 to-gray-100 h-screen p-8 flex items-center justify-center">
+  <div class="w-320 h-520 flex-shrink-0 rounded-lg bg-white shadow-md p-8 flex flex-col justify-between">
+    <div class="text-center">
+      <h1 class="text-3xl font-bold mb-4 text-blue-700">Survey Details</h1>
+      <p class="text-gray-700">Name: <%= @survey.title %></p>
+    </div>
 
-<p>Name: <%= @survey.title %></p>
+    <div class="mt-auto text-center">
+      <%= link_to "Start Survey", question_path(@survey.questions.first), class: "btn btn-primary rounded-full bg-blue-500 px-6 py-3 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800" %>
+    </div>
+  </div>
 
-<%= link_to "Start Survey", question_path(@survey.questions.first), class: "btn btn-primary" %>
+  <!-- Include your scripts and other body content here -->
+  <!-- ... -->
+</body>
+</html>
