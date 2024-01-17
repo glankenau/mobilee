@@ -1,0 +1,5 @@
+<h1>Survey Details</h1>
+
+<p>Name: <%= @survey.title %></p>
+
+<%= link_to "Start Survey", question_path(@survey.questions.first), class: "btn btn-primary" %>
