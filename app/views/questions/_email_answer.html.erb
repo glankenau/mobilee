@@ -1,0 +1,5 @@
+<%= form_with url:'/answers', method: :post do |f|%>
+  <%= f.email_field :email%>
+  <%= f.hidden_field :question_id, value: @question.id%>
+  <%= f.submit "Submit" %>
+<% end%>

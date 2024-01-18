@@ -1,0 +1,15 @@
+<!-- app/views/questions/_multiple_choice_question.html.erb -->
+
+<%= form_with url: '/answers', method: :post do |f| %>
+  <% @question.options.each do |option| %>
+    <label>
+      <%= radio_button_tag('selected_option', option.id) %>
+      <%= option.value %>
+    </label>
+    <br>
+  <% end %>
+
+  <%= hidden_field_tag('question_id', @question.id) %>
+
+  <%= submit_tag('Submit', class: 'btn btn-primary') %>
+<% end %>

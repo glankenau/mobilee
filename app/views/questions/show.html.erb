@@ -1,0 +1,8 @@
+<h1>Question Details</h1>
+
+<p>Title: <%= @question.title %></p>
+<% if @question.type == 'EmailQuestion'%>
+  <%= render "email_answer"%>
+<%elsif @question.type == 'MultipleChoiceQuestion'%>
+  <%= render "multiple_choice_question"%>
+<%end%>
