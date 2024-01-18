@@ -1,0 +1,2 @@
+class DescriptionAnswer < Answer
+end

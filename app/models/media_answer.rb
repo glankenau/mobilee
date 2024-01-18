@@ -1,0 +1,2 @@
+class MediaAnswer < Answer
+end
