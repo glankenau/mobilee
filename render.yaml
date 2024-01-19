@@ -1,5 +1,5 @@
 databases:
-  - name: mysite
+  - name: mobilee
     databaseName: mobilee_production
     user: mobilee
     plan: free
