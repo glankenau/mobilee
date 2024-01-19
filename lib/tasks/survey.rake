@@ -14,7 +14,7 @@ namespace :survey do
     puts "Survey '#{report.number}' created with ID #{report.id}"
 
     # Create Open Question
-    open_question = OpenQuestion.create(title: 'Please provide your email', number: 1, survey: survey)
+    open_question = EmailQuestion.create(title: 'Please provide your email', number: 1, survey: survey)
     puts "Open Question '#{open_question.title}' created with ID #{open_question.id}"
 
     # Create Multiple Choice Question for Age

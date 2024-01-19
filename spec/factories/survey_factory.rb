@@ -18,7 +18,7 @@ FactoryBot.define do
     end
   end
 
-  factory :open_question, class: 'OpenQuestion' do
+  factory :open_question, class: 'EmailQuestion' do
     title { 'Please provide your email' }
     number { 1 }
   end
