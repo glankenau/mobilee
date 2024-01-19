@@ -113,7 +113,7 @@ CREATE TABLE public.questions (
     id bigint NOT NULL,
     title text,
     number integer,
-    type character varying DEFAULT 'OpenQuestion'::character varying,
+    type character varying DEFAULT 'EmailQuestion'::character varying,
     survey_id bigint,
     created_at timestamp(6) with time zone NOT NULL,
     updated_at timestamp(6) with time zone NOT NULL
