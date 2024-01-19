@@ -1,2 +1,2 @@
-class Location < Answer
+class LocationAnswer < Answer
 end
