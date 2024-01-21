@@ -13,6 +13,9 @@ module.exports = {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
     },
+    opacity: {
+      '11': '.11',
+    }
   },
   plugins: [
     require('@tailwindcss/forms'),
