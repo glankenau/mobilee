@@ -1,0 +1,64 @@
+
+<nav class="bg-white min-h-24">
+  <div class="mx-auto px-16 pt-4">
+    <div class="relative flex h-16 items-center justify-between">
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="hidden sm:ml-6 sm:block">
+          <div class="items-center flex space-x-4">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a href="/" class="text-indigo-500 rounded-md px-3 py-2 text-4xl font-medium" aria-current="page">MOBILEE</a>
+            <a href="/surveys/1" class="text-slate-950 hover:bg-indigo-500 hover:text-white rounded-md px-3 py-2 text-base font-medium">SURVEYS</a>
+            <a href="#" class="text-slate-950 hover:bg-indigo-500 hover:text-white rounded-md px-3 py-2 text-base font-medium">REPORT SYSTEM</a>
+            <a href="#" class="text-slate-950 hover:bg-indigo-500 hover:text-white rounded-md px-3 py-2 text-base font-medium">DATA ANALYSIS</a>
+          </div>
+        </div>
+      </div>
+      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <a href="/dashboard"class="bg-indigo-500 hover:from-indigo-500 hover:to-transparent text-white font-normal py-2 px-4 rounded">
+        Test our product 
+      </a>
+      </div>
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div class="sm:hidden" id="mobile-menu">
+    <div class="space-y-1 px-2 pb-3 pt-2">
+      <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+      <a href="/" class="text-indigo-500 rounded-md px-3 py-2 text-4xl font-medium" aria-current="page">MOBILEE</a>
+      <a href="/surveys/1" class="text-slate-950 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-base font-medium">SURVEYS</a>
+      <a href="#" class="text-slate-950 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-base font-medium">REPORT SYSTEM</a>
+      <a href="#" class="text-slate-950 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-base font-medium">DATA ANALYSIS</a>
+    </div>
+  </div>
+</nav>
+
+<div class="bg-gradient-to-b from-indigo-500/11 to-transparent bg-opacity-50 h-screen p-8 flex justify-center">
+  <p class="x-center absolute text-center text-black text-[64px] font-bold font-['Inter']" style="top: 220px;">We are solving the major <br/>mobility injustices in Germany</p>
+  <p class="x-center absolute text-center text-black text-[32px] font-medium font-['Inter']" style="top: 406px;">Our solution helps municipalities to find the <br/>most critical mobility problems in the region</p>
+  <div class="x-center w-80 h-12 relative pt-4" style="top: 426px;">
+    <button class="x-center w-80 h-12 left-0 top-0 absolute bg-indigo-600 rounded-lg">
+      <p class="x-center w-40 left-[80.52px] top-[9px] absolute text-white text-2xl font-medium font-['Inter']">Discover how</p>
+    </button>
+  </div>
+  <p class="x-center absolute text-center text-black text-[64px] font-bold font-['Inter']" style="top: 628px;">How does it work?</p>
+
+
+  <div class="grid grid-cols-4 absolute gap-6 align-bottom" style="top: 787px;">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <p class="text-center pb-6">1. Citizens report injustices</p>
+      <%= image_tag('report.svg', alt: 'Citizens report injustices', class: 'svg-icon') %>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <p class="text-center">2. We leverage the reports </br> with our database*</p>
+      <%= image_tag('database.svg', alt: 'We leverage the reports with our database', class: 'svg-icon') %>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <p class="text-center">3. Our Artificial Intelligence Algorithm <br/>
+        analyses the data</p>
+      <%= image_tag('bot.svg', alt: 'Our AI analyses the data', class: 'svg-icon') %>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <p class="text-center">4. Municipalities receive reports </br>
+        of the most critical Injustices</p>
+      <%= image_tag('summary.svg', alt: 'Municipalities received reports', class: 'svg-icon') %>
+    </div>
+  </div>
+</div>
