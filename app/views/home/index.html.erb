@@ -30,13 +30,38 @@
   </div>
 </nav>
 
-<div class="bg-gradient-to-b from-indigo-500/11 to-transparent bg-opacity-50 h-screen p-8 flex items-center justify-center">
-  <div class="x-center top-[220px] absolute text-center text-black text-[64px] font-bold font-['Inter']">We are solving the major <br/>mobility injustices in Germany</div>
-  <div class="x-center top-[628px] absolute text-center text-black text-[64px] font-bold font-['Inter']">How does it work?</div>
-  <div class="x-center top-[406px] absolute text-center text-black text-[32px] font-medium font-['Inter']">Our solution helps municipalities to find the <br/>most critical mobility problems in the region</div>
-  <div class="x-center w-80 h-12 top-[516px] absolute">
+<div class="bg-gradient-to-b from-indigo-500/11 to-transparent bg-opacity-50 h-screen p-8 flex justify-center">
+  <p class="x-center absolute text-center text-black text-[64px] font-bold font-['Inter']" style="top: 220px;">We are solving the major <br/>mobility injustices in Germany</p>
+  <p class="x-center absolute text-center text-black text-[32px] font-medium font-['Inter']" style="top: 406px;">Our solution helps municipalities to find the <br/>most critical mobility problems in the region</p>
+  <div class="x-center w-80 h-12 relative pt-4" style="top: 426px;">
     <button class="x-center w-80 h-12 left-0 top-0 absolute bg-indigo-600 rounded-lg">
-      <div class="x-center w-40 left-[80.52px] top-[9px] absolute text-white text-2xl font-medium font-['Inter']">Discover how</div>
+      <p class="x-center w-40 left-[80.52px] top-[9px] absolute text-white text-2xl font-medium font-['Inter']">Discover how</p>
     </button>
   </div>
+  <p class="x-center absolute text-center text-black text-[64px] font-bold font-['Inter']" style="top: 628px;">How does it work?</p>
+
+
+<div class="grid grid-cols-4 absolute gap-6 align-bottom" style="top: 787px;">
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <p class="text-center">1. Citizens report injustices</p>
+    <%= image_tag('report.svg', alt: 'Citizens report injustices', class: 'svg-icon') %>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <p class="text-center">2. We leverage the reports </br> with our database*</p>
+    <%= image_tag('database.svg', alt: 'We leverage the reports with our database', class: 'svg-icon') %>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <p class="text-center">3. Our Artificial Intelligence Algorithm <br/>
+      analyses the data</p>
+    <%= image_tag('bot.svg', alt: 'Our AI analyses the data', class: 'svg-icon') %>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <p class="text-center">4. Municipalities receive reports </br>
+      of the most critical Injustices</p>
+    <%= image_tag('summary.svg', alt: 'Municipalities received reports', class: 'svg-icon') %>
+  </div>
 </div>
+
+</div>
+
+
