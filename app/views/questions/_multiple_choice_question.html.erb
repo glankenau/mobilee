@@ -2,7 +2,7 @@
 
 <%= form_with url: '/answers', method: :post do |f| %>
   <% @question.options.each do |option| %>
-    <label>
+    <label, class="w-64 h-[51px] bg-white rounded border border-indigo-600 border-opacity-50">
       <%= radio_button_tag('selected_option', option.id) %>
       <%= option.value %>
     </label>
@@ -11,5 +11,5 @@
 
   <%= hidden_field_tag('question_id', @question.id) %>
 
-  <%= submit_tag('Submit', class: 'btn btn-primary') %>
+  <%= submit_tag('Next', class: 'w-80 h-[53px] bg-indigo-600 bg-opacity-80 rounded-[32px] shadow-xl text-white') %>
 <% end %>
