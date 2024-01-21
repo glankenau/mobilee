@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   get "thanks" => "thanks#show"
+  get "dashboard" => "dashboard#show"
 
   # Defines the root path route ("/")
   # root "posts#index"
