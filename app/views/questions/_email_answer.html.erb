@@ -1,9 +1,10 @@
 <%= form_with url:'/answers', method: :post do |f| %>
-  <div class="w-64 h-[51px] rounded-[32px] border border-indigo-600 border-opacity-50">
-    <%= f.email_field :email, class: "w-full h-full p-2 rounded-[32px] border-none focus:outline-none focus:border-indigo-600 focus:ring focus:ring-indigo-200", placeholder: "michael@mustermann.de" %>
+  <div class="">
+    <%= f.email_field :email, class:"h-14 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-600 dark:focus:border-indigo-600", placeholder: "michael@mustermann.de", required: true %>
   </div>
   <%= f.hidden_field :question_id, value: @question.id %>
-  <div class="text-center">
+  <div class="flex-grow"></div> 
+  <div class="pt-8 text-center align-bottom">
     <%= f.submit "Next", class: "w-80 h-[53px] bg-indigo-600 bg-opacity-80 rounded-[32px] shadow-xl text-white" %>
   </div>
 <% end %>

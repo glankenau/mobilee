@@ -1,18 +1,24 @@
 <div class="bg-gradient-to-b from-indigo-600 to-gray-100 h-screen p-8 flex items-center justify-center">
-  <div class="flex-shrink-0 rounded-lg bg-white shadow p-8 flex flex-col justify-between h-[520px]">
-    <p class="text-indigo-600 opacity-50 text-base font-semibold font-['Inter']">
-      Q<%="#{@question.number}"%> of <%="#{@num_questions}"%>
-    </p>
-
-    <p class="text-indigo-600 text-base font-semibold font-['Inter']">
-      <%= @question.title %>
-    </p>
-    <% if @question.type == 'EmailQuestion'%>
-      <%= render "email_answer"%>
-    <%elsif @question.type == 'MultipleChoiceQuestion'%>
-      <%= render "multiple_choice_question"%>
-    <%elsif @question.type == 'DescriptionQuestion'%>
-      <%= render "description_answer"%>
-    <%end%>
+  <div class="rounded-lg bg-white shadow p-8 flex flex-col h-[520px]">
+    <div>
+      <p class="text-indigo-600 opacity-50 text-base font-semibold font-['Inter']">
+        Q<%="#{@question.number}"%> of <%="#{@num_questions}"%>
+      </p>
+    </div>
+    <div class="pt-4">
+      <p class="text-indigo-600 text-base font-semibold font-['Inter']">
+        <%= @question.title %>
+      </p>
+    </div>
+    
+    <div class="pt-8">
+      <% if @question.type == 'EmailQuestion'%>
+        <%= render "email_answer"%>
+      <%elsif @question.type == 'MultipleChoiceQuestion'%>
+        <%= render "multiple_choice_question"%>
+      <%elsif @question.type == 'DescriptionQuestion'%>
+        <%= render "description_answer"%>
+      <%end%>
+    </div>
   </div>
 </div>
