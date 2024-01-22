@@ -13,9 +13,13 @@
 
   <body>
     <main>
-      <%= render "templates/header"%>
+      <% unless hide_header?%>
+        <%= render "templates/header"%>
+      <%end%>
       <%= yield %>
-      <%= render "templates/footer"%>
+      <% unless hide_footer?%>
+        <%= render "templates/footer"%>
+      <%end%>
     </main>
   </body>
 </html>
