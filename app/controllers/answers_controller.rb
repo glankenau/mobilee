@@ -2,7 +2,6 @@ class AnswersController < ApplicationController
   def create
     @question = Question.find(permitted_params[:question_id])
     @survey = @question.survey
-
     if !cookies[:report_number]
       @report = Report.create(survey_id: @survey.id, number: 0)
       @report.update(number: @report.id)
