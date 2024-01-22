@@ -11,6 +11,8 @@
       <%= render "email_answer"%>
     <%elsif @question.type == 'MultipleChoiceQuestion'%>
       <%= render "multiple_choice_question"%>
+    <%elsif @question.type == 'DescriptionQuestion'%>
+      <%= render "description_answer"%>
     <%end%>
   </div>
 </div>
