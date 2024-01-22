@@ -1,6 +1,6 @@
-<div class="bg-gradient-to-b from-indigo-600 to-gray-100 h-screen p-8 flex items-center justify-center">
-  <div class="rounded-lg bg-white shadow p-8 flex flex-col h-[520px]">
-    <div>
+<div class="bg-gradient-to-b from-indigo-600 to-gray-100 h-screen w-screen p-8 justify-center items-center flex">
+  <div class="lg:w-full rounded-2xl bg-white shadow p-8 flex flex-col min-h-128 min-w-80 max-w-80">
+    <div class="h-full">
       <p class="text-indigo-600 opacity-50 text-base font-semibold font-['Inter']">
         Q<%="#{@question.number}"%> of <%="#{@num_questions}"%>
       </p>
@@ -10,8 +10,7 @@
         <%= @question.title %>
       </p>
     </div>
-    
-    <div class="pt-8 h-full">
+    <div class="pt-8">
       <% if @question.type == 'EmailQuestion'%>
         <%= render "email_answer"%>
       <%elsif @question.type == 'MultipleChoiceQuestion'%>
